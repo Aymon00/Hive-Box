@@ -43,9 +43,16 @@ jobs:
     - name: Setup OpenSSF Scorecard
       uses: ossf/scorecard-action@v2
       with:
-        results_file: results.sarif
+        results_file: results.json
 
     - name: Upload results to GitHub
       uses: github/codeql-action/upload-sarif@v1
       with:
         sarif_file: results.sarif
+        
+    - name: Run OpenSSF Scorecard
+      uses: ossf/scorecard-action@v2.4.0
+      with:
+       results_file: name.json
+       results_format: your_format_here 
+       repo_token: ${{ secrets.GITHUB_TOKEN }}
