@@ -19,4 +19,5 @@ jobs:
       - name: Run OpenSSF Scorecard
         uses: ossf/scorecard-action@v2.4.0
         with:
-           results-file: ./scorecard-results.json
+          results_file: .github/workflows/results/results.json 
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
