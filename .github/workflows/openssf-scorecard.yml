@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # خطوات أخرى، مثل البناء أو الاختبارات، يمكن إضافتها هنا.
+
+      - name: Run OpenSSF Scorecard
+        uses: ossf/scorecard-action@v1.0.5
+        with:
+          # يمكنك تحديد خيارات إضافية هنا إذا لزم الأمر.
