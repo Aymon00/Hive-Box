@@ -24,6 +24,6 @@ jobs:
       uses: ossf/scorecard-action@v2.4.0
       with:
         entryPoint: ./scorecard
-        results_file: ./scorecard-results.json
+        results_file: ./scorecard_results.json
         results_format: json
         repo_token: ${{ secrets.GITHUB_TOKEN }}
