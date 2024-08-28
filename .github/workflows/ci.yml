@@ -40,19 +40,23 @@ jobs:
       run: |
         pytest
 
-    - name: Setup OpenSSF Scorecard
+    - name: Run OpenSSF Scorecard
       uses: ossf/scorecard-action@v2
       with:
         results_file: results.json
+        results_format: json  # تحقق من التنسيق الصحيح
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Check if results file exists and is not empty
+      run: |
+        if [ -s results.json ]; then
+          echo "Results file exists and is not empty."
+        else
+          echo "Results file does not exist or is empty."
+          exit 1
+        fi
 
     - name: Upload results to GitHub
       uses: github/codeql-action/upload-sarif@v1
       with:
         sarif_file: results.json
-        
-    - name: Run OpenSSF Scorecard
-      uses: ossf/scorecard-action@v2.4.0
-      with:
-       results_file: results.json
-       results_format: results.json 
-       repo_token: ${{ secrets.GITHUB_TOKEN }}
