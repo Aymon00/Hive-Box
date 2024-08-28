@@ -19,6 +19,7 @@ jobs:
         pip install -r requirements.txt
         pip install pytest
 
-
     - name: Run OpenSSF Scorecard
-      uses: ossf/scorecard-action@v2.3.0
+      uses: ossf/scorecard-action@v2.4.0
+      with:
+        results-file: ./scorecard-results.json
