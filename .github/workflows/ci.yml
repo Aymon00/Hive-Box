@@ -27,7 +27,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run OpenSSF Scorecard
-        uses: ossf/scorecard-action@v1.0.5
+        uses: ossf/scorecard-action@v1.0.4
 
       - name: Run tests
         run: |
