@@ -1,0 +1,33 @@
+name: Version Check
+
+on:
+  push:
+    branches:
+      - main  # أو أي فرع تستخدمه
+
+jobs:
+  version-check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install curl
+      run: sudo apt-get install curl
+
+    - name: Check /version endpoint
+      run: |
+        # Replace <your-service-url> with the actual URL where your service is running
+        response=$(curl -s -o response.txt -w "%{http_code}" http://18.234.140.13/1.0.0)
+        if [ "$response" -ne 200 ]; then
+          echo "Failed to get correct response from /version endpoint"
+          exit 1
+        fi
+        version=$(cat response.txt)
+        expected_version="1.0.0" # Replace with the expected version
+        if [ "$version" != "$expected_version" ]; then
+          echo "Expected version $expected_version but got $version"
+          exit 1
+        fi
+        echo "Version check passed"
