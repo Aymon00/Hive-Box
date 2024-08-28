@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: 3.x
 
@@ -19,7 +19,11 @@ jobs:
         pip install -r requirements.txt
         pip install pytest
 
+
     - name: Run OpenSSF Scorecard
       uses: ossf/scorecard-action@v2.4.0
       with:
-        results-file: ./scorecard-results.json
+        entryPoint: ./scorecard
+        results_file: ./scorecard-results.json
+        results_format: json
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
