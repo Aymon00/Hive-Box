@@ -21,4 +21,4 @@ jobs:
 
 
     - name: Run OpenSSF Scorecard
-      uses: ossf/scorecard-action@1.0.0 
+      uses: ossf/scorecard-action@2.319.1 
