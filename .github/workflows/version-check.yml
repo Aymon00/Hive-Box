@@ -14,20 +14,30 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Install curl
-      run: sudo apt-get install curl
+      run: sudo apt-get install -y curl
 
     - name: Check /version endpoint
       run: |
-        # Replace <your-service-url> with the actual URL where your service is running
-        response=$(curl -s -o response.txt -w "%{http_code}" http://18.234.140.13/1.0.0)
+        # استبدال <your-service-url> بعنوان الـ URL الصحيح حيث يعمل خدمتك
+        url="http://18.234.140.13/version"
+        expected_version="1.0.0" # استبداله بالإصدار المتوقع
+
+        # استخدام curl للتحقق من الاستجابة
+        response=$(curl -s -o response.txt -w "%{http_code}" $url)
+        
+        # التحقق من رمز الحالة HTTP
         if [ "$response" -ne 200 ]; then
-          echo "Failed to get correct response from /version endpoint"
+          echo "Failed to get correct response from /version endpoint, HTTP code: $response"
           exit 1
         fi
+
+        # قراءة النسخة من الاستجابة
         version=$(cat response.txt)
-        expected_version="1.0.0" # Replace with the expected version
+        
+        # التحقق من النسخة المتوقعة
         if [ "$version" != "$expected_version" ]; then
           echo "Expected version $expected_version but got $version"
           exit 1
         fi
+
         echo "Version check passed"
