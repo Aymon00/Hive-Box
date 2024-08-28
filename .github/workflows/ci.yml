@@ -48,11 +48,11 @@ jobs:
     - name: Upload results to GitHub
       uses: github/codeql-action/upload-sarif@v1
       with:
-        sarif_file: results.sarif
+        sarif_file: results.json
         
     - name: Run OpenSSF Scorecard
       uses: ossf/scorecard-action@v2.4.0
       with:
-       results_file: name.json
-       results_format: your_format_here 
+       results_file: results.json
+       results_format: results.json 
        repo_token: ${{ secrets.GITHUB_TOKEN }}
