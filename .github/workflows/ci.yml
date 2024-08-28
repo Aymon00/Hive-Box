@@ -19,11 +19,9 @@ jobs:
         pip install -r requirements.txt
         pip install pytest
 
-
     - name: Run Scorecard
       uses: ossf/scorecard-action@v2.4.0
       with:
-       results_file: results.sarif
-       results_format: sarif
-       repo_token: ${{ secrets.GITHUB_TOKEN }}
-
+        results_file: results.sarif
+        results_format: sarif
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
