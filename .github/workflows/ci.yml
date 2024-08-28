@@ -17,11 +17,12 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-        pip install pylint pytest
+        pip install pytest
 
-    - name: Lint with pylint
+    - name: Build Docker image
       run: |
-        pylint **/*.py 
+        docker build -t myapp .
+
     - name: Run tests
       run: |
         pytest
