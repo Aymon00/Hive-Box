@@ -17,12 +17,11 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-        pip install pytest  # إذا كنت بحاجة فقط لتثبيت pytest
+        pip install pylint pytest
 
-    - name: Build Docker image
+    - name: Lint with pylint
       run: |
-        docker build -t myapp .
-
+        pylint **/*.py 
     - name: Run tests
       run: |
         pytest
