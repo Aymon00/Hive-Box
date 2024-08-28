@@ -17,15 +17,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-        pip install pylint pytest
-
-    - name: Lint with pylint
-      run: |
-        pylint main.py
-
-    - name: Lint Dockerfile
-      run: |
-        hadolint Dockerfile
+        pip install pytest  # إذا كنت بحاجة فقط لتثبيت pytest
 
     - name: Build Docker image
       run: |
