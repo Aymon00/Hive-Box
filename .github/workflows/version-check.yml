@@ -18,14 +18,14 @@ jobs:
 
     - name: Check /version endpoint
       run: |
-        # استبدال <your-service-url> بعنوان الـ URL الصحيح حيث يعمل خدمتك
-        url="http://18.234.140.13/version"
-        expected_version="1.0.0" # استبداله بالإصدار المتوقع
+        
+        url="http://3.82.138.191/version"
+        expected_version="1.0.0" 
 
-        # استخدام curl للتحقق من الاستجابة
+        
         response=$(curl -s -o response.txt -w "%{http_code}" $url)
         
-        # التحقق من رمز الحالة HTTP
+        
         if [ "$response" -ne 200 ]; then
           echo "Failed to get correct response from /version endpoint, HTTP code: $response"
           exit 1
