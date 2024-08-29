@@ -31,10 +31,10 @@ jobs:
           exit 1
         fi
 
-        # قراءة النسخة من الاستجابة
+        
         version=$(cat response.txt)
         
-        # التحقق من النسخة المتوقعة
+         
         if [ "$version" != "$expected_version" ]; then
           echo "Expected version $expected_version but got $version"
           exit 1
