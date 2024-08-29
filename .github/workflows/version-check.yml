@@ -19,7 +19,7 @@ jobs:
     - name: Check /version endpoint
       run: |
         
-        url="http://3.82.138.191"
+        url="http://3.82.138.191:8000/version"
         expected_version="1.0.0" 
 
         
